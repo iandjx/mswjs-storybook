@@ -2,6 +2,9 @@ import Home from "../pages";
 import { Meta } from "@storybook/react";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { graphql } from "msw";
+import { sum } from "../components/sum";
+import { mocked } from "ts-jest/utils";
+// jest.mock("../components.sum");
 
 export default {
   title: "Apollo",
@@ -14,11 +17,12 @@ const client = new ApolloClient({
 });
 
 export const HomeStory = () => (
+  // const mockedSum = mocked(sum);
+  // mockedSum.mockImplementationOnce(() => 4);
   <ApolloProvider client={client}>
     <Home />
   </ApolloProvider>
 );
-
 HomeStory.parameters = {
   msw: [
     graphql.query("GetExchangeRates", (req, res, ctx) => {

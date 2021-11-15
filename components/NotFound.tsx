@@ -1,5 +1,6 @@
 import React from "react";
 import { sum } from "./sum";
+
 const NotFound: React.FC<{}> = () => {
   const foo = sum();
   return (

@@ -9,6 +9,7 @@ import {
   useQuery,
   gql,
 } from "@apollo/client";
+import { sum } from "../components/sum";
 
 const EXCHANGE_RATES = gql`
   query GetExchangeRates {
@@ -21,10 +22,11 @@ const EXCHANGE_RATES = gql`
 
 const Home: NextPage = () => {
   const { loading, error, data } = useQuery(EXCHANGE_RATES);
-
+  const foo = sum();
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :( {console.log(error)}</p>;
 
+  return <div>{foo}</div>;
   return data.rates.map(
     ({ currency, rate }: any): JSX.Element => (
       <div key={currency}>
